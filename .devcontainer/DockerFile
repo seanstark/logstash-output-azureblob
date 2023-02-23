@@ -1,1 +1,1 @@
-FROM seanstark/logstash-output-azureblob:7.17
+FROM cameronkerrnz/logstash-plugin-dev:7.17
