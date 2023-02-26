@@ -2,11 +2,11 @@ Gem::Specification.new do |s|
   s.name          = 'logstash-output-azureblob'
   s.version       = '0.1.0'
   s.licenses      = ['Apache-2.0']
-  s.summary       = 'TODO: Write a short summary, because Rubygems requires one.'
-  s.description   = 'TODO: Write a longer description or delete this line.'
-  s.homepage      = 'TODO: Put your plugin''s website or public repo URL here.'
-  s.authors       = ['']
-  s.email         = ''
+  s.summary       = 'A Logstash output plugin to send data to Azure Blob Storage'
+  s.description   = 'This output plugin will send data to Azure Blob Storage'
+  s.homepage      = 'https://github.com/seanstark/logstash-output-azure-blob'
+  s.authors       = ['Sean Stark']
+  s.email         = 'sean.stark@microsoft.com'
   s.require_paths = ['lib']
 
   # Files
