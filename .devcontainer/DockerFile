@@ -1,1 +1,1 @@
-FROM logstash-plugin-dev/ubuntu
+FROM logstash-plugin-dev/ubuntu:version1
