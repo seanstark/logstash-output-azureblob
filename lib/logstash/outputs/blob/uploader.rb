@@ -1,6 +1,6 @@
 require 'logstash/util'
 require 'azure/storage/blob'
-#require 'azure/storage/common'
+require 'azure/storage/common'
 
 module LogStash
   module Outputs
