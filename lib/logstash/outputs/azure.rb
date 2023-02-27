@@ -1,63 +1,9 @@
 require 'logstash/outputs/base'
 require 'logstash/namespace'
-#require 'azure'
 require 'azure/storage/blob'
+require 'azure/storage/common'
 require 'tmpdir'
 
-# Logstash outout plugin that uploads the logs to Azure blobs.
-# The logs are stored on local temporary file which is uploaded as a blob
-# to Azure cloud
-#
-# @author Jaime Margolin
-#
-# @!attribute storage_account_name
-#   Azure storage account name (required) - found under the access keys tab
-# @!attribute storage_access_key
-#   Azure storage account access key (required) - found under the access keys tab
-# @!attribute container_name
-#   Blob container to uplaod blobs to (required)
-# @!attribute size_file
-#   File size to use for local tmeporary File
-# @!attribute time_file
-#   time to upload the local File
-# @!attribute restore
-#   restore after crash
-# @!attribute temporary_directory
-#   temporary directory where the temporary files will be written
-# @!attribute prefix
-#   prefix for the files to be uploaded
-# @!attribute upload queue size
-#   upload que size
-# @!attribute upload workers count
-#   how much workers for uplaod
-# @!attribute rotation_strategy_val
-#   what will be considered to do the tmeporary file rotation
-# @!attribute tags
-#   tags for the files
-# @!attribute encoding
-#   the encoding of the files
-# @example basic configuration
-#    output {
-#      azure {
-#        storage_account_name => "my-azure-account"    # required
-#        storage_access_key => "my-super-secret-key"   # required
-#        container_name => "my-container"              # required
-#        size_file => 1024*1024*5                      # optional
-#        time_file => 10                               # optional
-#        restore => true                               # optional
-#        temporary_directory => "path/to/directory"    # optional
-#        prefix => "a_prefix"                          # optional
-#        upload_queue_size => 2                        # optional
-#        upload_workers_count => 1                     # optional
-#        rotation_strategy_val => "size_and_time"      # optional
-#        tags => []                                    # optional
-#        encoding => "none"                            # optional
-#      }
-#    }
-# 
-# @To make the plugin available in your Logstash environment, run the following command:
-# bin/logstash-plugin install logstash-output-azure
-#
 class LogStash::Outputs::LogstashAzureBlobOutput < LogStash::Outputs::Base
   # name for the namespace under output for logstash configuration
   config_name 'azure'
@@ -204,18 +150,23 @@ class LogStash::Outputs::LogstashAzureBlobOutput < LogStash::Outputs::Base
     @periodic_check.shutdown
   end
 
-  # login to azure cloud using azure gem and create the container if it doesn't exist
+  # login to azure cloud using azure storage blob client and create the container if it doesn't exist
   # @return [Object] the azure_blob_service object, which is the endpoint to azure gem
   def blob_container_resource
-    client = Azure::Storage::Blob::BlobService.create(storage_account_name: storage_account_name, storage_access_key: storage_access_key)
-    list = client.list_containers()
+    @logger.debug('blob_container_resource',
+                  storage_account_name: storage_account_name,
+                  container: container_name)
+    blob_client = Azure::Storage::Blob::BlobService.create(
+        storage_account_name: storage_account_name, 
+        storage_access_key: storage_access_key
+    )
+    list = blob_client.list_containers()
     list.each do |item|
       @container = item if item.name == container_name
     end
 
-    client.create_container(container_name) unless @container
-    client
-    #azure_blob_service
+    blob_client.create_container(container_name) unless @container
+    blob_client
   end
 
   # check if it needs to rotate according to rotation policy and rotates it if it needs
