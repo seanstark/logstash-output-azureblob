@@ -49,7 +49,7 @@ module LogStash
             #
             # Thread might be stuck here, but I think its better than losing anything
             # its either a transient errors or something bad really happened.
-            logger.error('Uploading failed, retrying', exception: e.class, message: e.message, path: file.path, backtrace: e.backtrace)
+            logger.error('Uploading failed, retrying', exception: e.class, message: e.message, path: file.path, container: container_name, blobAccount: blob_account, backtrace: e.backtrace)
             retry
           end
 
