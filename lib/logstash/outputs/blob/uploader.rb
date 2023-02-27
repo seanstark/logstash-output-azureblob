@@ -1,6 +1,6 @@
 require 'logstash/util'
 require 'azure/storage/blob'
-require 'azure/storage/common'
+#require 'azure/storage/common'
 
 module LogStash
   module Outputs
@@ -49,7 +49,7 @@ module LogStash
             #
             # Thread might be stuck here, but I think its better than losing anything
             # its either a transient errors or something bad really happened.
-            logger.error('Uploading failed, retrying', exception: e.class, message: e.message, path: file.path, container: container_name, blobAccount: blob_account, backtrace: e.backtrace)
+            logger.error('Uploading failed, retrying', exception: e.class, message: e.message, filename: filename, path: file.path, container: container_name, blobAccount: blob_account, backtrace: e.backtrace)
             retry
           end
 
