@@ -10,7 +10,7 @@ I am not a Ruby developer and may not be able to respond efficently to issues or
 ## Example Configuration
 ```
 output {
-    azure {
+    azure_blob {
         storage_account_name => "my-azure-account"    # required
         storage_access_key => "my-super-secret-key"   # required
         container_name => "my-container"              # required

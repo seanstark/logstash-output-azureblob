@@ -1,4 +1,4 @@
-require 'logstash/outputs/azure'
+require 'logstash/outputs/azure_blob'
 require 'stud/temporary'
 require 'fileutils'
 require_relative '../../spec_helper'
