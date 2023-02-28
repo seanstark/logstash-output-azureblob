@@ -3,12 +3,16 @@
 
 This is an output plugin for [Logstash](https://github.com/elastic/logstash). It is fully free and open source. The license is Apache 2.0. This plugin was forked from https://github.com/tuffk/Logstash-output-to-Azure-Blob and updated to use the latest Azure Storage Ruby SDK
 
+- This plugin uses the https://github.com/Azure/azure-storage-ruby library
+- The class documentation is here: https://www.rubydoc.info/gems/azure-storage-blob
+
 ## Disclaimers
 
 I am not a Ruby developer and may not be able to respond efficently to issues or bugs. Please take this into consideration when using this plugin
 
 ## Requirements
-- Logstash version 8.6+. [Installation instructions](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html). Tested on 8.6.2
+- Logstash version 8.6+ [Installation instructions](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html). 
+    - Tested on 8.6.2
 - Azure Storage Account
     - ADLS2 is not supported
     - Azure Storage Account Access Key(s)
@@ -20,6 +24,11 @@ bin/logstash-plugin install logstash-output-azureblob
 > On Ubuntu the default path is /usr/share/logstash/bin/
 
 ## Configuration
+
+Information about configuring Logstash can be found in the [Logstash configuration guide](https://www.elastic.co/guide/en/logstash/current/configuration.html).
+
+You will need to configure this plugin before sending events from Logstash to an Azure Storage Account. The following example shows the minimum you need to provide:
+
 ```yaml
 output {
     azure_blob {
@@ -40,7 +49,7 @@ output {
 }
 ```
 
-### Example with SYSLOG
+### Example with syslog
 
 ```yaml
 input {
@@ -60,6 +69,32 @@ output {
 }
 ```
 
-# Libraries
-- This plugin uses the https://github.com/Azure/azure-storage-ruby library. 
-- The class documentation is here: https://www.rubydoc.info/gems/azure-storage-blob
+## Development
+
+- Docker Image - [cameronkerrnz/logstash-plugin-dev:7.17](https://hub.docker.com/r/cameronkerrnz/logstash-plugin-dev)
+    - https://github.com/cameronkerrnz/logstash-plugin-dev
+- jruby 9.2.20.1 (2.5.8)
+- Logstash Version 8.6.2+
+
+1. Install Dependencies
+
+    ```shell
+    rake vendor
+    bundle install
+    ```
+2. Build the plugin
+    ```shell
+    gem build logstash-output-azureblob.gemspec
+    ```
+3. Install Locally
+    ```shell
+    /usr/share/logstash/bin/logstash-plugin install /usr/share/logstash/logstash-output-azureblob-0.9.0.gem
+    ```
+4. Test with configuration file
+    ```shell
+    /usr/share/logstash/bin/logstash -f blob.conf
+    ```
+    
+## Contributing
+
+All contributions are welcome: ideas, patches, documentation, bug reports, and complaints. For more information about contributing, see the [CONTRIBUTING](https://github.com/elastic/logstash/blob/master/CONTRIBUTING.md) file.
