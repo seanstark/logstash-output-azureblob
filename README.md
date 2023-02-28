@@ -5,7 +5,7 @@ This is an output plugin for [Logstash](https://github.com/elastic/logstash). Th
 
 ## Disclaimers
 
-I am not a Ruby developer and may not be able to respond efficently to issues or bugs. Please take this into consideration when using this out plugin
+I am not a Ruby developer and may not be able to respond efficently to issues or bugs. Please take this into consideration when using this plugin
 
 ## Example Configuration
 ```
