@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.summary       = 'Plugin for logstash to send output to Azure Blob Storage'
   # s.description   = 'TODO: Write a longer description or delete this line.'
   # s.homepage      = 'TODO: Put your plugin''s website or public repo URL here.'
-  s.authors       = ['seanstark']
+  s.authors       = ['Sean Stark']
   s.email         = 'sean.stark@microsoft.com'
   s.require_paths = ['lib']
 
