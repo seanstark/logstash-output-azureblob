@@ -1,14 +1,26 @@
 
-# Logstash Azure Blob Storage Output Plugin
+# Logstash Output Plugin for Azure Blob Storage
 
-This is an output plugin for [Logstash](https://github.com/elastic/logstash). This plugin was forked from https://github.com/tuffk/Logstash-output-to-Azure-Blob and updated to use the latest Azure Storage SDK
+This is an output plugin for [Logstash](https://github.com/elastic/logstash). It is fully free and open source. The license is Apache 2.0. This plugin was forked from https://github.com/tuffk/Logstash-output-to-Azure-Blob and updated to use the latest Azure Storage Ruby SDK
 
 ## Disclaimers
 
 I am not a Ruby developer and may not be able to respond efficently to issues or bugs. Please take this into consideration when using this plugin
 
-## Example Configuration
+## Requirements
+- Logstash version 8.6+. [Installation instructions](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html). Tested on 8.6.2
+- Azure Storage Account
+    - ADLS2 is not supported
+    - Azure Storage Account Access Key(s)
+
+## Installation
+```sh
+bin/logstash-plugin install logstash-output-azureblob
 ```
+> On Ubuntu the default path is /usr/share/logstash/bin/
+
+## Configuration
+```yaml
 output {
     azure_blob {
         storage_account_name => "my-azure-account"    # required
@@ -30,12 +42,12 @@ output {
 
 ### Example with SYSLOG
 
-```
+```yaml
 input {
     syslog {
         port => "5514"
         type => "syslog"
-		codec => cef
+        codec => cef
     }
 }
 
