@@ -8,7 +8,7 @@ It is fully free and fully open source. The license is Apache 2.0, meaning you a
 ## Documentation
 
 ## Example Configuration
-
+```
 output {
     azure {
         storage_account_name => "my-azure-account"    # required
@@ -26,3 +26,4 @@ output {
         encoding => "none"                            # optional
     }
 }
+```
