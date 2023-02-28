@@ -27,3 +27,26 @@ output {
     }
 }
 ```
+
+### Example with SYSLOG
+
+```
+input {
+    syslog {
+        port => "5514"
+        type => "syslog"
+		codec => cef
+    }
+}
+
+output {
+    azure_blob {
+        storage_account_name => "cs7100320020b9463f8"
+        storage_access_key => "Z5Y2T/v63LCTmGqcOdXvSOv/iov3Dib10hgXtSWKwL8Deg+zWLyC9P/P4A8Bz0QjXT/FaoZShqf1+AStajdeBg=="
+        container_name => "fwlogstest"
+    }
+}
+```
+
+# Libraries
+This plugin uses the https://github.com/Azure/azure-storage-ruby library. The class documentation is here: https://www.rubydoc.info/gems/azure-storage-blob/1.0.1
