@@ -62,4 +62,4 @@ output {
 
 # Libraries
 - This plugin uses the https://github.com/Azure/azure-storage-ruby library. 
-- The class documentation is here: https://www.rubydoc.info/gems/azure-storage-blob/1.0.1
+- The class documentation is here: https://www.rubydoc.info/gems/azure-storage-blob
