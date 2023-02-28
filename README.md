@@ -1,11 +1,11 @@
 
 # Logstash Azure Blob Storage Output Plugin
 
-This is an output plugin for [Logstash](https://github.com/elastic/logstash).
+This is an output plugin for [Logstash](https://github.com/elastic/logstash). This plugin was forked from https://github.com/tuffk/Logstash-output-to-Azure-Blob and updated to use the latest Azure Storage SDK
 
-It is fully free and fully open source. The license is Apache 2.0, meaning you are pretty much free to use it however you want in whatever way.
+## Disclaimers
 
-## Documentation
+I am not a Ruby developer and may not be able to respond efficently to issues or bugs. Please take this into consideration when using this out plugin
 
 ## Example Configuration
 ```
