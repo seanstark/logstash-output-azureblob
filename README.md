@@ -10,11 +10,13 @@ This is an output plugin for [Logstash](https://github.com/elastic/logstash). It
 
 I am not a Ruby developer and may not be able to respond efficently to issues or bugs. Please take this into consideration when using this plugin
 
+- Azure Data Lake Storage Gen2 accounts are not currently supported. 
+- Managed Identities and Service Principles are currently not supported for auth. 
+
 ## Requirements
 - Logstash version 8.6+ [Installation instructions](https://www.elastic.co/guide/en/logstash/current/installing-logstash.html). 
     - Tested on 8.6.2
 - Azure Storage Account
-    - ADLS2 is not supported
     - Azure Storage Account Access Key(s)
 
 ## Installation
