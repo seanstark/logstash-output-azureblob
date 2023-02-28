@@ -2,9 +2,9 @@ Gem::Specification.new do |s|
   s.name          = 'logstash-output-azureblob'
   s.version       = '0.9.0'
   s.licenses      = ['Apache License (2.0)']
-  s.summary       = 'Plugin for logstash to send output to Azure Blob Storage'
-  # s.description   = 'TODO: Write a longer description or delete this line.'
-  # s.homepage      = 'TODO: Put your plugin''s website or public repo URL here.'
+  s.summary       = 'Output plugin for logstash to send output to Azure Blob Storage'
+  s.description   = 'This output plugin will send logs to azure blob storage. This does not support ADLS2 endpoints'
+  s.homepage      = 'https://github.com/seanstark/logstash-output-azureblob'
   s.authors       = ['Sean Stark']
   s.email         = 'sean.stark@microsoft.com'
   s.require_paths = ['lib']
